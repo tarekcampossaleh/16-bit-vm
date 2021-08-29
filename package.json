@@ -1,0 +1,8 @@
+{
+  "name": "16-bit-processor-js",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:tarekcampossaleh/16-bit-processor-js.git",
+  "author": "tarekcampossaleh <tarekcampossaleh@gmail.com>",
+  "license": "MIT"
+}

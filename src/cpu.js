@@ -64,15 +64,18 @@ class CPU {
 
   execute(instruction) {
     switch (instruction) {
-      case instructions.MOV_LIT_R1: {
+      case instructions.MOV_LIT_REG: {
         const literal = this.fetch16();
-        this.setRegister('r1', literal);
+        const register = (this.fetch() % this.registerNames.length) * 2;
+        this.registers.setUint16(register, literal);
         return;
       }
 
-      case instructions.MOV_LIT_R2: {
-        const literal = this.fetch16();
-        this.setRegister('r2', literal);
+      case instructions.MOV_REG_REG: {
+        const registerFrom = (this.fetch() % this.registerNames.length) * 2;
+        const registerTo = (this.fetch() % this.registerNames.length) * 2;
+        const value = this.registers.getUint16(registerFrom);
+        this.registers.setUint16(registerTo, value);
         return;
       }
 

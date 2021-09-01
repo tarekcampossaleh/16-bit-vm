@@ -79,6 +79,22 @@ class CPU {
         return;
       }
 
+      case instructions.MOV_REG_MEM: {
+        const registerFrom = (this.fetch() % this.registerNames.length) * 2;
+        const address = this.fetch16();
+        const value = this.registers.getUint16(registerFrom);
+        this.memory.setUint16(address, value);
+        return;
+      }
+
+      case instructions.MOV_MEM_REG: {
+        const address = this.fetch16();
+        const registerTo = (this.fetch() % this.registerNames.length) * 2;
+        const value = this.registers.getUint16(address);
+        this.registers.setUint16(registerTo, value);
+        return;
+      }
+
       case instructions.ADD_REG_REG: {
         const r1 = this.fetch();
         const r2 = this.fetch();

@@ -34,6 +34,15 @@ class CPU {
     console.log();
   }
 
+  viewMemoryAt(address) {
+    const nextEightBytes = Array.from({ length: 8 }, (_, i) => {
+      this.memory.getUint8(address + 1);
+    }).map((v) => `0x${v.toString(16).padStart(2, '0')}`);
+    console.log(
+      `0x${address.toString(16).padStart(4, '0')}: ${nextEightBytes.join(' ')}`
+    );
+  }
+
   getRegister(name) {
     if (!(name in this.registerMap))
       throw new Error(`getRegister: No such register '${name}'`);
